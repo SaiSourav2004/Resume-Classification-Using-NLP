@@ -1,3 +1,246 @@
-# 📄 AI-Powered Resume Screening System [](#) [](#) [](#) [](#) [](#) *An advanced NLP-based Machine Learning application designed to automate and streamline the resume screening process for modern recruiters.*
---- ## 📖 Project Description The **AI-Powered Resume Screening System** is an end-to-end Machine Learning and Natural Language Processing (NLP) project. It automatically parses, analyzes, and classifies candidate resumes into specific job categories. By leveraging robust NLP techniques and a Linear Support Vector Machine (SVM) classifier, this tool significantly reduces the manual effort required in candidate shortlisting, providing recruiters with instant categorizations and text analytics. ## 💼 Business Problem Statement In today's highly competitive job market, recruiters and HR departments are often overwhelmed by hundreds or even thousands of applications for a single job opening. Manually screening these resumes is a time-consuming, labor-intensive, and bias-prone process. There is a critical business need for an automated Applicant Tracking System (ATS) mechanism that can accurately interpret unstructured resume data, extract meaningful features, and instantly categorize candidates to accelerate the hiring pipeline. ## 🎯 Project Objectives - **Automate Screening:** Eliminate manual resume sorting by automatically predicting the job category based on resume text. - **Implement Advanced NLP:** Clean and standardize unstructured text data for accurate machine learning consumption. - **Model Optimization:** Evaluate multiple classification algorithms to find the most accurate and reliable predictive model. - **Deploy a Usable Tool:** Create an intuitive, accessible web interface for non-technical HR personnel using Streamlit. ## 📊 Dataset Information - **Source:** Kaggle Resume Dataset - **Total Records:** 2,484 annotated resumes - **Input Feature:** `Resume Text` (Unstructured strings) - **Target Variable:** `Predicted Job Category` (Multi-class classification) ## 🏗️ Project Architecture Diagram ```text ┌─────────────────────────────────────────────────────────┐ │ USER INTERFACE │ │ (Streamlit Web Application) │ └───────────────────────────┬─────────────────────────────┘ │ (Raw Resume Text) ▼ ┌─────────────────────────────────────────────────────────┐ │ NLP TEXT PREPROCESSING │ │ ├─ Lowercasing ├─ Stopword Removal │ │ ├─ URL/Link Removal ├─ Lemmatization │ │ └─ Special Char Removal │ └───────────────────────────┬─────────────────────────────┘ │ (Cleaned Text) ▼ ┌─────────────────────────────────────────────────────────┐ │ FEATURE ENGINEERING │ │ ├─ TF-IDF Vectorization ├─ Word Count │ │ ├─ Character Count ├─ Sentence Count │ └───────────────────────────┬─────────────────────────────┘ │ (Numerical Vectors) ▼ ┌─────────────────────────────────────────────────────────┐ │ MACHINE LEARNING PIPELINE │ │ [ Linear SVM Model ] │ └───────────────────────────┬─────────────────────────────┘ │ ▼ ┌─────────────────────────────────────────────────────────┐ │ OUTPUT │ │ Predicted Job Category & Resume Analytics │ └─────────────────────────────────────────────────────────┘ ``` ## 🛠️ Technology Stack - **Language:** Python - **Data Manipulation:** Pandas, NumPy - **Natural Language Processing:** NLTK (Natural Language Toolkit) - **Machine Learning:** Scikit-Learn - **Feature Extraction:** TF-IDF (Term Frequency-Inverse Document Frequency) - **Web Application Framework:** Streamlit ## ⚙️ Project Workflow 1. **Data Ingestion:** Load the Kaggle Resume Dataset into a Pandas DataFrame. 2. **Text Preprocessing:** Clean the raw text to remove noise and standardize vocabulary. 3. **Feature Extraction:** Transform the cleaned text into statistical numerical vectors using TF-IDF. 4. **Model Training:** Train multiple baseline and advanced classification models. 5. **Evaluation:** Compare model performance and select the optimal algorithm. 6. **Deployment:** Serialize the best model and vectorizer, and serve them via a Streamlit app. ## ✨ Features - **Instant Categorization:** Accurately classifies resumes into various industry domains. - **Text Analytics Dashboard:** Automatically extracts and displays: - Character Count - Word Count - Sentence Count - **Clean UI:** Professional, responsive, and intuitive Streamlit interface. - **Scalable Architecture:** Modular codebase allowing for easy integration with existing ATS platforms. ## 🧠 Machine Learning Pipeline ### Text Preprocessing The unstructured resume text undergoes a rigorous cleaning pipeline to maximize the signal-to-noise ratio: - **Lowercasing:** Uniform text casing. - **URL Removal:** Strips out HTTP/HTTPS links. - **Special Character Removal:** Removes punctuation and non-alphanumeric characters. - **Stopword Removal:** Filters out common English words that carry no semantic weight. - **Lemmatization:** Reduces words to their base or dictionary form (e.g., "running" → "run"). ### Feature Extraction - **TF-IDF Vectorization:** Converts the preprocessed text documents into a matrix of TF-IDF features, capturing the relative importance of words within the resumes. ### Models Evaluated 1. Multinomial Naive Bayes 2. Logistic Regression 3. **Linear SVM (Best Performing Model)** ## 📈 Model Performance The models were evaluated using a comprehensive suite of metrics to ensure robustness across all job categories: - **Primary Metrics:** Accuracy, Precision, Recall, F1-Score. - **Diagnostics:** Confusion Matrix analysis to check for class imbalances and misclassification rates. - **Result:** **Linear SVM** significantly outperformed the other models, demonstrating the best balance of precision and recall for high-dimensional text data. ## 🌐 Streamlit Deployment The final, optimized Linear SVM model and the fitted TF-IDF vectorizer were serialized (using `joblib`/`pickle`) and integrated into a Streamlit web application. * **Input:** Users can paste raw resume text directly into the web app. * **Output:** The app instantly displays the predicted category alongside custom feature engineering analytics (word/character/sentence counts). ## 🚀 Installation Steps 1. **Clone the repository:** ```bash git clone https://github.com/yourusername/AI-Resume-Screening-System.git cd AI-Resume-Screening-System ``` 2. **Create a virtual environment (Recommended):** ```bash python -m venv venv source venv/bin/activate # On Windows: venv\Scripts\activate ``` 3. **Install the required dependencies:** ```bash pip install -r requirements.txt ``` 4. **Download NLTK Data:** ```python import nltk nltk.download('stopwords') nltk.download('wordnet') nltk.download('punkt') ``` ## 💻 Usage Instructions To launch the web application locally, run the following command in your terminal: ```bash streamlit run app.py ``` *The application will open automatically in your default web browser at `http://localhost:8501`.* ## 📁 Project Folder Structure ```text 📦 AI-Resume-Screening-System ┣ 📂 dataset ┃ ┗ 📜 Resume.csv ┣ 📂 models ┃ ┣ 📜 resume_classifier.pkl # Trained Linear SVM model ┃ ┗ 📜 tfidf_vectorizer.pkl # Trained TF-IDF vectorizer ┣ 📂 notebooks ┃ ┗ 📜 Resume_ATS_System.ipynb # Complete ML modeling and EDA notebook ┣ 📜 app.py # Streamlit application script ┣ 📜 requirements.txt # Project dependencies ┗ 📜 README.md # Project documentation ``` ## 🔮 Future Enhancements - **PDF/Docx Parsing:** Integrate `PyPDF2` or `pdfplumber` to allow users to directly upload resume files instead of pasting text. - **Deep Learning Integration:** Experiment with transformer models like BERT or RoBERTa for context-aware embeddings. - **ATS Parsing Score:** Implement a feature to compare the resume against a specific Job Description (JD) and return a compatibility percentage. - **Named Entity Recognition (NER):** Automatically extract candidate names, emails, phone numbers, and specific skills using spaCy. ## 👨‍💻 Author **[Your Name / Your Handle]** - **GitHub:** @yourusername - **LinkedIn:** Your Profile - **Portfolio:** Your Website ---
-If you found this project helpful, please consider giving it a ⭐ on GitHub!
+# 📄 AI-Powered Resume Screening System
+
+An NLP-based Machine Learning application that automatically classifies resumes into predefined job categories using TF-IDF and Linear SVM.
+
+---
+
+## 🚀 Project Overview
+
+The AI-Powered Resume Screening System is designed to automate the resume categorization process. It uses Natural Language Processing (NLP) techniques to preprocess resume text and predict the most suitable job category.
+
+This helps reduce manual screening effort and enables faster candidate classification.
+
+---
+
+## 🎯 Objectives
+
+- Automate resume categorization
+- Apply NLP techniques on unstructured text
+- Compare multiple Machine Learning models
+- Select the best-performing classifier
+- Deploy the solution using Streamlit
+
+---
+
+## 📊 Dataset Information
+
+- **Source:** Kaggle Resume Dataset
+- **Total Records:** 2,484 Resumes
+- **Feature:** Resume Text
+- **Target:** Job Category
+- **Problem Type:** Multi-Class Text Classification
+
+### Categories Include
+
+- Information Technology
+- Engineering
+- Finance
+- HR
+- Sales
+- Business Development
+- Healthcare
+- Teacher
+- Advocate
+- Chef
+- Designer
+- Banking
+- Aviation
+- Consultant
+- And more...
+
+---
+
+## 🛠️ Technology Stack
+
+### Programming Language
+- Python
+
+### Data Analysis
+- Pandas
+- NumPy
+
+### NLP
+- NLTK
+
+### Machine Learning
+- Scikit-Learn
+
+### Deployment
+- Streamlit
+
+---
+
+## 🔄 Project Workflow
+
+```text
+Resume Text
+      │
+      ▼
+Text Preprocessing
+      │
+      ▼
+TF-IDF Vectorization
+      │
+      ▼
+Model Training
+      │
+      ▼
+Linear SVM Classifier
+      │
+      ▼
+Category Prediction
+```
+
+---
+
+## 🧹 NLP Preprocessing
+
+The resume text undergoes:
+
+- Lowercasing
+- URL Removal
+- Special Character Removal
+- Stopword Removal
+- Lemmatization
+- Whitespace Cleaning
+
+---
+
+## 📈 Feature Engineering
+
+Additional text features were created:
+
+- Character Count
+- Word Count
+- Sentence Count
+- Average Word Length
+- Stopword Count
+- Digit Count
+- Capital Letter Count
+- Punctuation Count
+
+---
+
+## 🤖 Models Evaluated
+
+| Model | Evaluated |
+|---------|---------|
+| Multinomial Naive Bayes | ✅ |
+| Logistic Regression | ✅ |
+| Linear SVM | ✅ |
+
+### Best Model
+
+**Linear Support Vector Machine (SVM)**
+
+Reason:
+- Better generalization
+- Strong performance on high-dimensional text data
+- Best balance between Precision and Recall
+
+---
+
+## 📊 Model Evaluation
+
+Evaluation Metrics:
+
+- Accuracy
+- Precision
+- Recall
+- F1-Score
+- Confusion Matrix
+
+The Linear SVM model achieved the best overall performance among all evaluated models.
+
+---
+
+## 🌐 Streamlit Application
+
+Features:
+
+✅ Resume Category Prediction
+
+✅ Resume Analytics
+
+- Character Count
+- Word Count
+- Sentence Count
+
+✅ Clean and Interactive User Interface
+
+---
+
+## 📁 Project Structure
+
+```text
+Resume_ATS_Project/
+│
+├── dataset/
+├── models/
+├── plots/
+├── Resume_ATS_System.ipynb
+├── streamlit_app.py
+├── resume_classifier.pkl
+├── tfidf_vectorizer.pkl
+├── requirements.txt
+├── README.md
+└── .gitignore
+```
+
+---
+
+## ⚙️ Installation
+
+Clone Repository
+
+```bash
+git clone https://github.com/SaiSourav2004/Resume-Classification-Using-NLP.git
+```
+
+Move to Project Directory
+
+```bash
+cd Resume-Classification-Using-NLP
+```
+
+Install Dependencies
+
+```bash
+pip install -r requirements.txt
+```
+
+Run Application
+
+```bash
+streamlit run streamlit_app.py
+```
+
+---
+
+## 🔮 Future Enhancements
+
+- Resume PDF Upload
+- DOCX Resume Parsing
+- Skill Extraction
+- Job Description Matching
+- ATS Compatibility Score
+- Resume Improvement Suggestions
+- BERT-Based Classification
+- AI-Powered Recruitment Assistant
+
+---
+
+## 👨‍💻 Author
+
+### Sai Sourav Panigrahi
+
+- Data Science & Machine Learning Enthusiast
+- Python Developer
+- NLP Projects
+
+GitHub:
+https://github.com/SaiSourav2004
+
+---
+
+⭐ If you found this project useful, consider giving it a Star.
