@@ -14,7 +14,7 @@ from io import StringIO
 # PAGE CONFIGURATION & CUSTOM CSS
 # ==========================================
 st.set_page_config(
-    page_title="AI Resume Screening & ATS System",
+    page_title="Smart Resume Analyzer & ATS System",
     page_icon="📄",
     layout="wide",
     initial_sidebar_state="expanded"
@@ -211,8 +211,8 @@ with st.sidebar:
     st.markdown("## ⚙️ System Configuration")
     st.info("""
     **About this Project:**
-    Recruiters often receive hundreds of resumes for a single opening, causing delays. This automated AI system evaluates and shortlists candidates to improve efficiency.
-    """)
+    This project uses NLP and Machine Learning to classify resumes into job categories, extract skills, calculate ATS scores, identify missing skills, 
+    and provide resume improvement suggestions. """)
     st.markdown("---")
     st.markdown("### ⚙️ Pipeline Status")
     
@@ -223,12 +223,12 @@ with st.sidebar:
         st.error("⚠️ Pipeline Not Found. Please place `resume_pipeline.pkl` in the root folder.")
         
     st.markdown("---")
-    st.markdown("🎓 **Data Science Capstone**")
-    st.markdown("Developed using Scikit-Learn, NLTK & Streamlit.")
+    st.markdown("🎓 **NLP & Machine Learning Capstone**")
+    st.markdown("Built using Scikit-Learn, NLTK, TF-IDF, Linear SVM & Streamlit.")
 
 # Header
-st.markdown("<div class='main-header'>AI-Powered Resume Screening System</div>", unsafe_allow_html=True)
-st.markdown("<div class='sub-header'>Instantly classify resumes, extract skills, and generate actionable ATS insights</div>", unsafe_allow_html=True)
+st.markdown("<div class='main-header'>Smart Resume Analyzer & ATS System</div>", unsafe_allow_html=True)
+st.markdown("<div class='sub-header'>Analyze resumes, extract skills, calculate ATS scores, and receive intelligent improvement suggestions.</div>", unsafe_allow_html=True)
 
 # Input Section
 st.markdown("### 📝 Upload or Enter Candidate Resume")
